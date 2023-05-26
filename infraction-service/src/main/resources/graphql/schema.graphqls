@@ -1,0 +1,37 @@
+type Infraction {
+  id: ID,
+  date: String,
+  radarId: ID,
+  vehicleMatricule: String,
+  vehicleSpeed: Int,
+  radarMaxSpeed: Int,
+  infractionAmount: Float
+}
+
+type Query {
+  allInfractions: [Infraction],
+  infractionById(id: ID): Infraction
+}
+
+type Mutation {
+  createInfraction(
+    date: String,
+    radarId: ID,
+    vehicleMatricule: String,
+    vehicleSpeed: Int,
+    radarMaxSpeed: Int,
+    infractionAmount: Float,
+  ): Infraction,
+
+  updateInfraction(
+    id: ID,
+    date: String,
+    radarId: ID,
+    vehicleMatricule: String,
+    vehicleSpeed: Int,
+    radarMaxSpeed: Int,
+    infractionAmount: Float,
+  ): Infraction,
+
+  deleteInfraction(id: ID!): Boolean
+}

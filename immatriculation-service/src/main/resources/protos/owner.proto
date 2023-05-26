@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_package = "org.sid.registrationservice.web.grpc.stubs";
+
+service OwnerService {
+
+  rpc getOwners(Empty) returns (OwnerList);
+  rpc getOwner(OwnerId) returns (Owner);
+  rpc saveOwner(Owner) returns (Owner);
+  rpc updateOwner(Owner) returns (Owner);
+  rpc deleteOwner(OwnerId) returns (Empty);
+
+  rpc getVehicules(Empty) returns (VehiculeList);
+  rpc getVehicule(VehicleId) returns (Vehicule);
+  rpc saveVehicule(Vehicule) returns (Vehicule);
+  rpc updateVehicule(Vehicule) returns (Vehicule);
+  rpc deleteVehicule(VehicleId) returns (Empty);
+}
+
+
+message OwnerId{
+  int32 id = 1;
+}
+
+message VehicleId{
+  int32 id = 1;
+}
+
+message Empty{}
+
+message OwnerList {
+  repeated Owner owners = 1;
+}
+
+message VehiculeList{
+  repeated Vehicule vehicules = 1;
+}
+
+message Owner {
+  int32 id = 1;
+  string name = 2;
+  string birthDate = 3;
+  string email = 4;
+  repeated Vehicule vehicules = 5;
+}
+
+message Vehicule{
+  int32 id = 1;
+  string regNumber = 2;
+  string brand = 3;
+  float fiscalPower = 4;
+  string model = 5;
+  Owner owner = 6;
+}
